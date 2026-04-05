@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { srConfig, email } from '@config';
+import { srConfig, emailObfuscated, emailMailto } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
@@ -16,7 +16,7 @@ const StyledContactSection = styled.section`
   .overline {
     display: block;
     margin-bottom: 20px;
-    color: var(--green);
+    color: var(--heading-accent);
     font-family: var(--font-mono);
     font-size: var(--fz-md);
     font-weight: 400;
@@ -39,6 +39,13 @@ const StyledContactSection = styled.section`
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
   }
+
+  .email-note {
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: var(--fz-sm);
+    font-family: var(--font-mono);
+  }
 `;
 
 const Contact = () => {
@@ -59,12 +66,9 @@ const Contact = () => {
 
       <h2 className="title">Get In Touch</h2>
 
-      <p>
-        Although I’m not currently looking for any new opportunities, my inbox is always open.
-        Whether you have a question or just want to say hi, I’ll try my best to get back to you!
-      </p>
+      <p className="email-note">{emailObfuscated}</p>
 
-      <a className="email-link" href={`mailto:${email}`}>
+      <a className="email-link" href={emailMailto()}>
         Say Hello
       </a>
     </StyledContactSection>

@@ -21,13 +21,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: var(--lightest-navy);
-    color: var(--lightest-slate);
+    background-color: var(--surface-muted);
+    color: var(--text-bright);
   }
 
   /* Provide basic, default focus styles.*/
   :focus {
-    outline: 2px dashed var(--green);
+    outline: 2px dashed var(--accent);
     outline-offset: 3px;
   }
 
@@ -46,24 +46,24 @@ const GlobalStyle = createGlobalStyle`
     focus.
   */
   :focus-visible {
-    outline: 2px dashed var(--green);
+    outline: 2px dashed var(--accent);
     outline-offset: 3px;
   }
 
   /* Scrollbar Styles */
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--dark-slate) var(--navy);
+    scrollbar-color: var(--scrollbar-thumb) var(--bg-base);
   }
   ::-webkit-scrollbar {
     width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--navy);
+    background: var(--bg-base);
   }
   ::-webkit-scrollbar-thumb {
-    background-color: var(--dark-slate);
-    border: 3px solid var(--navy);
+    background-color: var(--scrollbar-thumb);
+    border: 3px solid var(--bg-base);
     border-radius: 10px;
   }
 
@@ -74,8 +74,8 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: var(--navy);
-    color: var(--slate);
+    background-color: var(--bg-base);
+    color: var(--text-secondary);
     font-family: var(--font-sans);
     font-size: var(--fz-xl);
     line-height: 1.3;
@@ -165,7 +165,7 @@ const GlobalStyle = createGlobalStyle`
   h6 {
     margin: 0 0 10px 0;
     font-weight: 600;
-    color: var(--lightest-slate);
+    color: var(--text-bright);
     line-height: 1.1;
   }
 
@@ -194,7 +194,7 @@ const GlobalStyle = createGlobalStyle`
       counter-increment: section;
       content: '0' counter(section) '.';
       margin-right: 10px;
-      color: var(--green);
+      color: var(--heading-accent);
       font-family: var(--font-mono);
       font-size: clamp(var(--fz-md), 3vw, var(--fz-xl));
       font-weight: 400;
@@ -213,7 +213,7 @@ const GlobalStyle = createGlobalStyle`
       width: 300px;
       height: 1px;
       margin-left: 20px;
-      background-color: var(--lightest-navy);
+      background-color: var(--surface-muted);
 
       @media (max-width: 1080px) {
         width: 200px;
@@ -225,6 +225,32 @@ const GlobalStyle = createGlobalStyle`
         margin-left: 10px;
       }
     }
+  }
+
+  /**
+   * In-section labels (Skills, Coursework, grouped lists) — below main numbered headings.
+   * Mono, uppercase; distinct from links (--accent) and from .numbered-heading h2 title text.
+   */
+  .subsection-heading {
+    font-family: var(--font-mono);
+    font-size: clamp(var(--fz-xs), 1.25vw, var(--fz-sm));
+    text-transform: uppercase;
+    letter-spacing: 0.055em;
+    color: var(--heading-accent);
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 0.65rem 0;
+  }
+
+  /** Primary in-section labels (Coursework, Skills) — one step up from .subsection-heading. */
+  .subsection-heading--large {
+    font-size: clamp(var(--fz-sm), 1.5vw, var(--fz-md));
+  }
+
+  /** Spacing when a subsection label follows body content (e.g. Skills after Coursework). */
+  .subsection-heading--section {
+    margin-top: 1.35rem;
+    margin-bottom: 0.6rem;
   }
 
   img,
@@ -261,7 +287,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover,
     &:focus {
-      color: var(--green);
+      color: var(--accent);
     }
 
     &.inline-link {
@@ -303,8 +329,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     & > code {
-      background-color: var(--light-navy);
-      color: var(--white);
+      background-color: var(--surface-raised);
+      color: var(--text-code);
       font-size: var(--fz-sm);
       border-radius: var(--border-radius);
       padding: 0.3em 0.5em;
@@ -325,14 +351,14 @@ const GlobalStyle = createGlobalStyle`
           content: '▹';
           position: absolute;
           left: 0;
-          color: var(--green);
+          color: var(--accent);
         }
       }
     }
   }
 
   blockquote {
-    border-left-color: var(--green);
+    border-left-color: var(--accent);
     border-left-style: solid;
     border-left-width: 1px;
     margin-left: 0px;
@@ -346,7 +372,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   hr {
-    background-color: var(--lightest-navy);
+    background-color: var(--surface-muted);
     height: 1px;
     border-width: 0px;
     border-style: initial;
@@ -372,8 +398,8 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover,
     &:focus {
-      background-color: var(--green);
-      color: var(--navy);
+      background-color: var(--accent);
+      color: var(--bg-base);
       top: 0;
       left: 0;
       width: auto;
@@ -386,18 +412,18 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #logo {
-    color: var(--green);
+    color: var(--accent);
   }
 
   .overline {
-    color: var(--green);
+    color: var(--heading-accent);
     font-family: var(--font-mono);
     font-size: var(--fz-md);
     font-weight: 400;
   }
 
   .subtitle {
-    color: var(--green);
+    color: var(--heading-accent);
     margin: 0 0 20px 0;
     font-size: var(--fz-md);
     font-family: var(--font-mono);
@@ -420,7 +446,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     margin-bottom: 50px;
-    color: var(--green);
+    color: var(--heading-accent);
 
     .arrow {
       display: block;

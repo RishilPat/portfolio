@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-import { loaderDelay } from '@utils';
+import { fadeTransitionMs } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledSideElement = styled.div`
@@ -12,7 +12,7 @@ const StyledSideElement = styled.div`
   left: ${props => (props.orientation === 'left' ? '40px' : 'auto')};
   right: ${props => (props.orientation === 'left' ? 'auto' : '40px')};
   z-index: 10;
-  color: var(--light-slate);
+  color: var(--text-muted);
 
   @media (max-width: 1080px) {
     left: ${props => (props.orientation === 'left' ? '20px' : 'auto')};
@@ -32,7 +32,7 @@ const Side = ({ children, isHome, orientation }) => {
     if (!isHome || prefersReducedMotion) {
       return;
     }
-    const timeout = setTimeout(() => setIsMounted(true), loaderDelay);
+    const timeout = setTimeout(() => setIsMounted(true), 100);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -43,7 +43,9 @@ const Side = ({ children, isHome, orientation }) => {
       ) : (
         <TransitionGroup component={null}>
           {isMounted && (
-            <CSSTransition classNames={isHome ? 'fade' : ''} timeout={isHome ? loaderDelay : 0}>
+            <CSSTransition
+              classNames={isHome ? 'fade' : ''}
+              timeout={isHome ? fadeTransitionMs : 0}>
               {children}
             </CSSTransition>
           )}

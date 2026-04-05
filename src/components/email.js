@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { email } from '@config';
+import { emailObfuscated } from '@config';
 import { Side } from '@components';
 
 const StyledLinkWrapper = styled.div`
@@ -16,10 +16,10 @@ const StyledLinkWrapper = styled.div`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: var(--light-slate);
+    background-color: var(--text-muted);
   }
 
-  a {
+  .email-display {
     margin: 20px auto;
     padding: 10px;
     font-family: var(--font-mono);
@@ -27,18 +27,14 @@ const StyledLinkWrapper = styled.div`
     line-height: var(--fz-lg);
     letter-spacing: 0.1em;
     writing-mode: vertical-rl;
-
-    &:hover,
-    &:focus {
-      transform: translateY(-3px);
-    }
+    color: var(--text-muted);
   }
 `;
 
 const Email = ({ isHome }) => (
   <Side isHome={isHome} orientation="right">
     <StyledLinkWrapper>
-      <a href={`mailto:${email}`}>{email}</a>
+      <span className="email-display">{emailObfuscated}</span>
     </StyledLinkWrapper>
   </Side>
 );

@@ -7,26 +7,30 @@ const TransitionStyles = css`
   .fadeup-enter {
     opacity: 0.01;
     transform: translateY(20px);
-    transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+    transition: opacity var(--duration-enter) var(--easing),
+      transform var(--duration-enter) var(--easing);
   }
 
   .fadeup-enter-active {
     opacity: 1;
     transform: translateY(0px);
-    transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+    transition: opacity var(--duration-enter) var(--easing),
+      transform var(--duration-enter) var(--easing);
   }
 
   /* Fade down */
   .fadedown-enter {
     opacity: 0.01;
     transform: translateY(-20px);
-    transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+    transition: opacity var(--duration-enter) var(--easing),
+      transform var(--duration-enter) var(--easing);
   }
 
   .fadedown-enter-active {
     opacity: 1;
     transform: translateY(0px);
-    transition: opacity 300ms var(--easing), transform 300ms var(--easing);
+    transition: opacity var(--duration-enter) var(--easing),
+      transform var(--duration-enter) var(--easing);
   }
 
   /* Fade */
@@ -35,14 +39,14 @@ const TransitionStyles = css`
   }
   .fade-enter-active {
     opacity: 1;
-    transition: opacity 300ms var(--easing);
+    transition: opacity var(--duration-enter) var(--easing);
   }
   .fade-exit {
     opacity: 1;
   }
   .fade-exit-active {
     opacity: 0;
-    transition: opacity 300ms var(--easing);
+    transition: opacity var(--duration-enter) var(--easing);
   }
 `;
 

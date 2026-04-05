@@ -1,21 +1,24 @@
 import { css } from 'styled-components';
+import { motionDurationEnterMs, motionDurationScrollRevealMs } from '../utils/motion';
 
 const variables = css`
   :root {
-    --dark-navy: #020c1b;
-    --navy: #0a192f;
-    --light-navy: #112240;
-    --lightest-navy: #233554;
-    --navy-shadow: rgba(2, 12, 27, 0.7);
-    --dark-slate: #495670;
-    --slate: #8892b0;
-    --light-slate: #a8b2d1;
-    --lightest-slate: #ccd6f6;
-    --white: #e6f1ff;
-    --green: #64ffda;
-    --green-tint: rgba(100, 255, 218, 0.1);
-    --pink: #f57dff;
-    --blue: #57cbff;
+    --bg-deepest: #0a0e1a;
+    --bg-base: #111827;
+    --surface-raised: #1f2937;
+    --surface-muted: #374151;
+    --shadow-soft: rgba(8, 15, 35, 0.78);
+    --scrollbar-thumb: #6b7280;
+    --text-secondary: #9ca3af;
+    --text-muted: #d1d5db;
+    --text-bright: #e5e7eb;
+    --text-code: #f9fafb;
+    --accent: #60a5fa;
+    --accent-tint: rgba(251, 113, 133, 0.14);
+    --heading-accent: rgb(108, 247, 136);
+    --heading-accent-tint: rgba(245, 158, 11, 0.12);
+    --accent-pink: #a78bfa;
+    --accent-blue: #93c5fd;
 
     --font-sans: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui,
       sans-serif;
@@ -38,6 +41,8 @@ const variables = css`
     --tab-width: 120px;
 
     --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --motion-duration-enter: ${motionDurationEnterMs}ms;
+    --motion-duration-scroll-reveal: ${motionDurationScrollRevealMs}ms;
     --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     --hamburger-width: 30px;

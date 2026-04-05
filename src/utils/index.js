@@ -1,10 +1,8 @@
-export const hex2rgba = (hex, alpha = 1) => {
-  const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
-  return `rgba(${r},${g},${b},${alpha})`;
-};
+import { motionDurationEnterMs } from './motion';
 
 export const navDelay = 1000;
-export const loaderDelay = 2000;
+/** CSSTransition timeout for home page entrance animations (nav, hero, side rails). Matches TransitionStyles / `--duration-enter`. */
+export const fadeTransitionMs = motionDurationEnterMs;
 
 export const KEY_CODES = {
   ARROW_LEFT: 'ArrowLeft',

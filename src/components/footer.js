@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { Icon } from '@components/icons';
 import { socialMedia } from '@config';
@@ -21,7 +22,7 @@ const StyledSocialLinks = styled.div`
     width: 100%;
     max-width: 270px;
     margin: 0 auto 10px;
-    color: var(--light-slate);
+    color: var(--text-muted);
   }
 
   ul {
@@ -41,7 +42,7 @@ const StyledSocialLinks = styled.div`
 `;
 
 const StyledCredit = styled.div`
-  color: var(--light-slate);
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: var(--fz-xxs);
   line-height: 1;
@@ -68,6 +69,18 @@ const StyledCredit = styled.div`
 `;
 
 const Footer = () => {
+  const { site } = useStaticQuery(graphql`
+    query FooterSiteQuery {
+      site {
+        siteMetadata {
+          title
+          githubRepo
+        }
+      }
+    }
+  `);
+  const { title: authorName, githubRepo } = site.siteMetadata;
+
   const [githubInfo, setGitHubInfo] = useState({
     stars: null,
     forks: null,
@@ -77,7 +90,8 @@ const Footer = () => {
     if (process.env.NODE_ENV !== 'production') {
       return;
     }
-    fetch('https://api.github.com/repos/bchiang7/v4')
+    const apiUrl = githubRepo.replace('https://github.com/', 'https://api.github.com/repos/');
+    fetch(apiUrl)
       .then(response => response.json())
       .then(json => {
         const { stargazers_count, forks_count } = json;
@@ -105,8 +119,8 @@ const Footer = () => {
       </StyledSocialLinks>
 
       <StyledCredit tabindex="-1">
-        <a href="https://github.com/bchiang7/v4">
-          <div>Designed &amp; Built by Brittany Chiang</div>
+        <a href={githubRepo}>
+          <div>Designed &amp; Built by {authorName}</div>
 
           {githubInfo.stars && githubInfo.forks && (
             <div className="github-stats">
