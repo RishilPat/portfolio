@@ -8,4 +8,4 @@ url: 'https://www.khoury.northeastern.edu/'
 ---
 
 - Teaching Assistant for CY 2550 — Introduction to Cybersecurity (200+ students)
-- Support instruction through office hours and the class discussion forum
+- Supported instruction through office hours and the class discussion forum
