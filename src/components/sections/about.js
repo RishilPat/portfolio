@@ -333,22 +333,21 @@ const COURSEWORK_BY_CATEGORY = [
   {
     title: 'Computer Science',
     courses: [
-      { code: 'CS1800', name: 'Discrete Structures - with Recitation' },
-      { code: 'CS2500', name: 'Fundamentals of Computer Science 1 - with Lab' },
-      { code: 'CS2510', name: 'Fundamentals of Computer Science 2 - with Lab' },
       { code: 'CS3100', name: 'Object-Oriented Design' },
       { code: 'CS3650', name: 'Computer Systems' },
-      { code: 'CY2550', name: 'Introduction to Cybersecurity' },
       { code: 'CS4100', name: 'Foundations of Artificial Intelligence' },
+      { code: 'CY2550', name: 'Introduction to Cybersecurity' },
+      { code: 'CS2510', name: 'Fundamentals of Computer Science 2' },
+      { code: 'CS2500', name: 'Fundamentals of Computer Science 1' },
+      { code: 'CS1800', name: 'Discrete Structures' },
     ],
   },
   {
     title: 'Electrical / Computer Engineering',
     courses: [
-      { code: 'EECE2140', name: 'Computing Fundamentals' },
+      { code: 'EECE2520', name: 'Linear Systems' },
       { code: 'EECE2150', name: 'Circuits & Signals' },
       { code: 'EECE2160', name: 'Embedded Design' },
-      { code: 'EECE2520', name: 'Linear Systems' },
       { code: 'EECE2540', name: 'Fundamentals of Networks' },
       { code: 'EECE2750', name: 'EECE Technical Elective - Enabling Engineering' },
     ],
@@ -395,7 +394,7 @@ const SKILL_CATEGORIES = [
   {
     id: 'miscellaneous',
     title: 'Miscellaneous',
-    items: ['Git', 'SVN', 'Linux', 'Windows'],
+    items: ['Git & GitHub', 'SVN', 'Linux', 'Windows'],
   },
 ];
 
@@ -433,7 +432,7 @@ const About = () => {
               <br />
               Bachelor of Science in Computer Engineering and Computer Science
             </StyledEducationBody>
-            <StyledEducationMeta>Expected May 2027 · GPA 3.98</StyledEducationMeta>
+            <StyledEducationMeta>Expected Graduation: May 2027 · GPA 3.98</StyledEducationMeta>
             <StyledEducationMeta>
               Activities: Capture the Flag NU, Aerospace NU, Trivia Club, Service Learning Program
             </StyledEducationMeta>
