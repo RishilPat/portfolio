@@ -21,8 +21,8 @@ const MAX_SPEED = 2.2;
  * At ~60fps, 1/180 ≈ one trigger every ~3s on average (interval scales with refresh rate).
  */
 const DAZZLE_TRIGGER_CHANCE = 1 / 180;
-const DAZZLE_FRAMES_MIN = 16;
-const DAZZLE_FRAMES_MAX = 34;
+const DAZZLE_FRAMES_MIN = 32;
+const DAZZLE_FRAMES_MAX = 68;
 
 function parseCssHex(hex) {
   const h = hex.replace('#', '').trim();
@@ -42,6 +42,23 @@ function mixRgb(a, b, t) {
     g: Math.round(a.g + (b.g - a.g) * t),
     b: Math.round(a.b + (b.b - a.b) * t),
   };
+}
+
+/**
+ * Traces the classic 4-point "sparkle" glyph (as in Material's auto_awesome icon) centered
+ * at (cx, cy): one continuous outline, cusped tips, curving smoothly in toward the center
+ * between arms without fully separating into blades. Caller sets fillStyle and calls
+ * ctx.fill().
+ */
+function traceSparkle(ctx, cx, cy, r) {
+  const c = r * 0.45; // control-point pull-in distance, matches the reference glyph's proportions
+  ctx.beginPath();
+  ctx.moveTo(cx, cy - r); // top tip
+  ctx.bezierCurveTo(cx, cy - c, cx + c, cy, cx + r, cy); // to right tip
+  ctx.bezierCurveTo(cx + c, cy, cx, cy + c, cx, cy + r); // to bottom tip
+  ctx.bezierCurveTo(cx, cy + c, cx - c, cy, cx - r, cy); // to left tip
+  ctx.bezierCurveTo(cx - c, cy, cx, cy - c, cx, cy - r); // back to top tip
+  ctx.closePath();
 }
 
 const BackgroundParticles = () => {
@@ -231,13 +248,11 @@ const BackgroundParticles = () => {
           const glowAlpha = 0.08 + pulse * 0.38;
           const coreAlpha = 0.12 + pulse * 0.42;
 
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r + 2.5 + (1 - t) * 5, 0, Math.PI * 2);
+          traceSparkle(ctx, p.x, p.y, 7 + pulse * 9 + (1 - t) * 3);
           ctx.fillStyle = `rgba(255, 255, 255, ${glowAlpha * 0.45})`;
           ctx.fill();
 
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * (1.15 + 0.55 * pulse), 0, Math.PI * 2);
+          traceSparkle(ctx, p.x, p.y, 3.5 + pulse * 4.5);
           ctx.fillStyle = `rgba(255, 252, 248, ${coreAlpha})`;
           ctx.fill();
 

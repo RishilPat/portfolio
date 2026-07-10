@@ -5,13 +5,10 @@ import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledContactSection = styled.section`
-  max-width: 600px;
-  margin: 0 auto 100px;
+  width: 100%;
+  max-width: min(37.5rem, 100%);
+  margin: 0 auto clamp(3.125rem, 8vw, 6.25rem);
   text-align: center;
-
-  @media (max-width: 768px) {
-    margin: 0 auto 50px;
-  }
 
   .overline {
     display: block;
@@ -53,12 +50,21 @@ const Contact = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
+    if (prefersReducedMotion || !sr) {
+      return undefined;
     }
 
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
+    const el = revealContainer.current;
+    if (el) {
+      sr.reveal(el, srConfig());
+    }
+
+    return () => {
+      if (sr && el) {
+        sr.clean(el);
+      }
+    };
+  }, [prefersReducedMotion]);
 
   return (
     <StyledContactSection id="contact" ref={revealContainer}>

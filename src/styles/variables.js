@@ -34,6 +34,14 @@ const variables = css`
     --fz-heading: 32px;
 
     --border-radius: 4px;
+    /* Horizontal inset: ~25px on small phones → 150px on large desktops */
+    --page-gutter-x: clamp(1.5625rem, 0.25rem + 7.8125vw, 9.375rem);
+    /* Main top padding (non–fill-height pages) */
+    --main-padding-y: clamp(7.8125rem, 4rem + 6vw, 12.5rem);
+    /* Section vertical rhythm */
+    --section-padding-y: clamp(3.75rem, 4vw + 2.5rem, 6.25rem);
+    /* Main content column; never wider than parent */
+    --section-max-width: min(62.5rem, 100%);
     --nav-height: 100px;
     --nav-scroll-height: 70px;
 
@@ -42,6 +50,8 @@ const variables = css`
 
     --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
     --motion-duration-enter: ${motionDurationEnterMs}ms;
+    /* Alias for TransitionStyles / CSSTransition (matches fadeTransitionMs in src/utils/index.js) */
+    --duration-enter: var(--motion-duration-enter);
     --motion-duration-scroll-reveal: ${motionDurationScrollRevealMs}ms;
     --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 

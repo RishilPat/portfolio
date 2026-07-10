@@ -10,7 +10,7 @@ const StyledProjectsSection = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 900px;
+  max-width: var(--section-max-width);
   margin: 0 auto;
 
   .projects-grid {
@@ -61,7 +61,7 @@ const StyledProject = styled.li`
 
   .project-description {
     color: var(--text-muted);
-    font-size: 17px;
+    font-size: clamp(var(--fz-md), 1.35vw, 17px);
 
     a {
       ${({ theme }) => theme.mixins.inlineLink};
@@ -117,13 +117,34 @@ const Projects = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
+    if (prefersReducedMotion || !sr) {
+      return undefined;
     }
 
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
+    const titleEl = revealTitle.current;
+    if (titleEl) {
+      sr.reveal(titleEl, srConfig());
+    }
+    revealProjects.current.forEach((ref, i) => {
+      if (ref) {
+        sr.reveal(ref, srConfig(i * 100));
+      }
+    });
+
+    return () => {
+      if (!sr) {
+        return;
+      }
+      if (titleEl) {
+        sr.clean(titleEl);
+      }
+      revealProjects.current.forEach(ref => {
+        if (ref) {
+          sr.clean(ref);
+        }
+      });
+    };
+  }, [prefersReducedMotion]);
 
   const projects = data.projects.edges.filter(({ node }) => node);
 

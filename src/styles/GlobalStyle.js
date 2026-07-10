@@ -116,45 +116,17 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 1600px;
     min-height: 100vh;
-    padding: 200px 150px;
-
-    @media (max-width: 1080px) {
-      padding: 200px 100px;
-    }
-    @media (max-width: 768px) {
-      padding: 150px 50px;
-    }
-    @media (max-width: 480px) {
-      padding: 125px 25px;
-    }
+    padding: var(--main-padding-y) var(--page-gutter-x);
 
     &.fillHeight {
-      padding: 0 150px;
-
-      @media (max-width: 1080px) {
-        padding: 0 100px;
-      }
-      @media (max-width: 768px) {
-        padding: 0 50px;
-      }
-      @media (max-width: 480px) {
-        padding: 0 25px;
-      }
+      padding: 0 var(--page-gutter-x);
     }
   }
 
   section {
     margin: 0 auto;
-    padding: 100px 0;
-    max-width: 1000px;
-
-    @media (max-width: 768px) {
-      padding: 80px 0;
-    }
-
-    @media (max-width: 480px) {
-      padding: 60px 0;
-    }
+    padding: var(--section-padding-y) 0;
+    max-width: var(--section-max-width);
   }
 
   h1,
@@ -183,10 +155,18 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     position: relative;
-    margin: 10px 0 40px;
+    margin: 10px 0 clamp(1.75rem, 3vw, 2.5rem);
     width: 100%;
+    max-width: 100%;
     font-size: clamp(26px, 5vw, var(--fz-heading));
     white-space: nowrap;
+
+    @media (max-width: 480px) {
+      white-space: normal;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      row-gap: 0.35rem;
+    }
 
     &:before {
       position: relative;
@@ -210,20 +190,27 @@ const GlobalStyle = createGlobalStyle`
       display: block;
       position: relative;
       top: -5px;
-      width: 300px;
+      flex: 1 1 0%;
+      min-width: min(12vw, 12.5rem);
       height: 1px;
-      margin-left: 20px;
+      margin-left: clamp(0.5rem, 2vw, 1.25rem);
       background-color: var(--surface-muted);
 
-      @media (max-width: 1080px) {
-        width: 200px;
-      }
       @media (max-width: 768px) {
+        flex-basis: 100%;
         width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        margin-top: 0.35rem;
+        top: 0;
       }
-      @media (max-width: 600px) {
-        margin-left: 10px;
-      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .numbered-heading {
+      flex-wrap: wrap;
+      align-items: flex-start;
     }
   }
 
@@ -367,7 +354,7 @@ const GlobalStyle = createGlobalStyle`
 
     p {
       font-style: italic;
-      font-size: 24px;
+      font-size: clamp(var(--fz-lg), 2.5vw, 1.5rem);
     }
   }
 

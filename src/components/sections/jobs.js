@@ -8,7 +8,8 @@ import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledJobsSection = styled.section`
-  max-width: 900px;
+  max-width: var(--section-max-width);
+  width: 100%;
 
   .inner {
     display: flex;
@@ -33,6 +34,13 @@ const StyledTabList = styled.div`
   max-width: 100%;
   padding: 0;
   margin: 0;
+  align-self: stretch;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 `;
 
 const StyledTabButton = styled.button`
@@ -210,12 +218,21 @@ const Jobs = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
+    if (prefersReducedMotion || !sr) {
+      return undefined;
     }
 
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
+    const el = revealContainer.current;
+    if (el) {
+      sr.reveal(el, srConfig());
+    }
+
+    return () => {
+      if (sr && el) {
+        sr.clean(el);
+      }
+    };
+  }, [prefersReducedMotion]);
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {

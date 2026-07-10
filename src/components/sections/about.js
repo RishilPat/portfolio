@@ -5,7 +5,7 @@ import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledAboutSection = styled.section`
-  max-width: 1260px;
+  max-width: var(--section-max-width);
   width: 100%;
 
   .inner {
@@ -339,6 +339,7 @@ const COURSEWORK_BY_CATEGORY = [
       { code: 'CS3100', name: 'Object-Oriented Design' },
       { code: 'CS3650', name: 'Computer Systems' },
       { code: 'CY2550', name: 'Introduction to Cybersecurity' },
+      { code: 'CS4100', name: 'Foundations of Artificial Intelligence' },
     ],
   },
   {
@@ -374,7 +375,7 @@ const SKILL_CATEGORIES = [
   {
     id: 'ai-tools',
     title: 'AI Tools',
-    items: ['Cursor', 'GitHub Copilot in VSCode', 'Claude'],
+    items: ['Cursor', 'GitHub Copilot', 'Microsoft Copilot', 'Claude'],
   },
   {
     id: 'hardware',
@@ -384,14 +385,17 @@ const SKILL_CATEGORIES = [
       'Arduino',
       'Oscilloscope',
       'Multimeter',
-      'Function Generator',
+      'Waveform Generator',
+      'Logic Analyzer',
+      'LTspice',
       'Circuit Design',
+      'Soldering',
     ],
   },
   {
     id: 'miscellaneous',
     title: 'Miscellaneous',
-    items: ['Git', 'SVN', 'Linux', 'Windows', 'Soldering'],
+    items: ['Git', 'SVN', 'Linux', 'Windows'],
   },
 ];
 
@@ -400,11 +404,20 @@ const About = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
+    if (prefersReducedMotion || !sr) {
+      return undefined;
     }
 
-    sr.reveal(revealContainer.current, srConfig());
+    const el = revealContainer.current;
+    if (el) {
+      sr.reveal(el, srConfig());
+    }
+
+    return () => {
+      if (sr && el) {
+        sr.clean(el);
+      }
+    };
   }, [prefersReducedMotion]);
 
   return (
@@ -421,6 +434,9 @@ const About = () => {
               Bachelor of Science in Computer Engineering and Computer Science
             </StyledEducationBody>
             <StyledEducationMeta>Expected May 2027 · GPA 3.98</StyledEducationMeta>
+            <StyledEducationMeta>
+              Activities: Capture the Flag NU, Aerospace NU, Trivia Club, Service Learning Program
+            </StyledEducationMeta>
 
             <StyledCourseworkDetails>
               <summary>

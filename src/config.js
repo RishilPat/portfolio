@@ -15,9 +15,9 @@ module.exports = {
     image: '',
     twitterUsername: '',
     tagline: 'Computer Engineering & Computer Science student.',
-    /** Opening hero paragraph (before the current-role sentence from jobs markdown). */
+    /** Opening hero paragraph (before the most-recent-role sentence from jobs markdown). */
     heroBio:
-      'I am a junior at Northeastern exploring the intersection of software and hardware. Currently, ', // this will be followed by job
+      'I am a junior at Northeastern exploring the intersection of software and hardware. Most recently, ', // this will be followed by job
     /** Follows job title, company link, and location in the hero. */
     heroRoleClosing: 'building and testing software for electronic test and measurement products.',
     /**
@@ -25,7 +25,7 @@ module.exports = {
      * Skip repeating school, tagline, or job (those live in hero + Education below).
      */
     aboutLead:
-      'I care most about software that has to be right next to hardware: test and measurement, embedded bring-up, and tooling that makes validation faster and less ambiguous. I like working across that boundary—turning specs and lab reality into code people trust.',
+      'I care most about software that has to be right next to hardware: test and measurement, embedded bring-up, and tooling that makes validation faster and less ambiguous',
     githubRepo: 'https://github.com/RishilPat/portfolio',
   },
 
@@ -75,9 +75,9 @@ module.exports = {
     bgDeepest: '#0a0e1a',
   },
 
-  srConfig: (delay = 200, viewFactor = 0.25) => ({
+  srConfig: (delay = 200, viewFactor = 0.2) => ({
     origin: 'bottom',
-    distance: '20px',
+    distance: '14px',
     duration: motionDurationScrollRevealMs,
     delay,
     rotate: { x: 0, y: 0, z: 0 },

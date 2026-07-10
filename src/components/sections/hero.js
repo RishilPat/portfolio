@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-import { navDelay, fadeTransitionMs } from '@utils';
+import { fadeTransitionMs } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledHeroSection = styled.section`
@@ -69,7 +69,8 @@ const StyledHeroSection = styled.section`
 
   p {
     margin: 20px 0 0;
-    max-width: 540px;
+    width: 100%;
+    max-width: min(33.75rem, 100%);
   }
 
   .email-link {
@@ -119,7 +120,7 @@ const Hero = () => {
       return;
     }
 
-    const timeout = setTimeout(() => setIsMounted(true), navDelay);
+    const timeout = setTimeout(() => setIsMounted(true), 100);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -128,7 +129,7 @@ const Hero = () => {
   const three = <h3 className="big-heading">{tagline}</h3>;
   const four = currentJob ? (
     <p>
-      {heroBio} I&apos;m a {currentJob.title} at{' '}
+      {heroBio} I was a {currentJob.title} at{' '}
       <a href={currentJob.url} target="_blank" rel="noreferrer">
         {currentJob.company}
       </a>{' '}
@@ -157,8 +158,8 @@ const Hero = () => {
         <TransitionGroup component={null}>
           {isMounted &&
             items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={fadeTransitionMs}>
-                <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
+              <CSSTransition key={i} classNames="fadeup" timeout={fadeTransitionMs + i * 100}>
+                <div style={{ transitionDelay: `${i * 100}ms` }}>{item}</div>
               </CSSTransition>
             ))}
         </TransitionGroup>

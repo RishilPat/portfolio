@@ -10,4 +10,4 @@ tech:
   - Sensors
 ---
 
-Team project: assistive door monitoring for children with special needs, with family-guided requirements. Multi-sensor design (reed switches, accelerometers) for reliability; ESP32-based notifications via email; planning for tamper resistance, dual power, and offline operation.
+Collaborated in a 4-person team on an assistive door monitoring system for children with special needs, guided by family input. Multi-sensor design (reed switches, accelerometers, ultrasonic sensors) for reliability; ESP32-based real-time door status updates via SMS and email; fail-safe features including tamper-resistant mounting and a dual-power system with primary and redundant backup batteries.

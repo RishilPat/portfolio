@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   z-index: 11;
-  padding: 0px 50px;
+  padding: 0 var(--page-gutter-x);
   width: 100%;
   height: var(--nav-height);
   background-color: color-mix(in srgb, var(--bg-base) 85%, transparent);
@@ -22,13 +22,6 @@ const StyledHeader = styled.header`
   user-select: auto !important;
   backdrop-filter: blur(10px);
   transition: var(--transition);
-
-  @media (max-width: 1080px) {
-    padding: 0 40px;
-  }
-  @media (max-width: 768px) {
-    padding: 0 25px;
-  }
 
   @media (prefers-reduced-motion: no-preference) {
     ${props =>
@@ -138,7 +131,7 @@ const Nav = ({ isHome }) => {
   const fadeDownClass = isHome ? 'fadedown' : '';
 
   const ResumeLink = (
-    <a className="resume-button" href="/#contact">
+    <a className="resume-button" href="/Patel_Resume.pdf" download>
       Resume
     </a>
   );
@@ -170,7 +163,10 @@ const Nav = ({ isHome }) => {
                   {isMounted &&
                     navLinks &&
                     navLinks.map(({ url, name }, i) => (
-                      <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
+                      <CSSTransition
+                        key={i}
+                        classNames={fadeDownClass}
+                        timeout={isHome ? timeout + i * 100 : timeout}>
                         <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
                           <Link to={url}>{name}</Link>
                         </li>
@@ -181,7 +177,9 @@ const Nav = ({ isHome }) => {
 
               <TransitionGroup component={null}>
                 {isMounted && (
-                  <CSSTransition classNames={fadeDownClass} timeout={timeout}>
+                  <CSSTransition
+                    classNames={fadeDownClass}
+                    timeout={isHome ? timeout + navLinks.length * 100 : timeout}>
                     <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
                       {ResumeLink}
                     </div>

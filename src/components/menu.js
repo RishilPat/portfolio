@@ -94,8 +94,8 @@ const StyledSidebar = styled.aside`
     top: 0;
     bottom: 0;
     right: 0;
-    padding: 50px 10px;
-    width: min(75vw, 400px);
+    padding: clamp(2.5rem, 8vh, 3.125rem) clamp(0.5rem, 2vw, 0.625rem);
+    width: min(75vw, 25rem);
     height: 100vh;
     outline: 0;
     background-color: var(--surface-raised);
@@ -266,7 +266,7 @@ const Menu = () => {
               </ol>
             )}
 
-            <a href="/#contact" className="resume-link">
+            <a href="/Patel_Resume.pdf" className="resume-link" download>
               Resume
             </a>
           </nav>
