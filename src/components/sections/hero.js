@@ -12,10 +12,10 @@ const StyledHeroSection = styled.section`
   min-height: 100vh;
   height: 100vh;
   padding: 0;
+  padding-top: var(--nav-height);
 
-  @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
+  @media (max-height: 700px), (max-width: 360px) {
     height: auto;
-    padding-top: var(--nav-height);
   }
 
   h1 {

@@ -14,7 +14,13 @@ const StyledSideElement = styled.div`
   z-index: 10;
   color: var(--text-muted);
 
-  @media (max-width: 768px) {
+  /*
+   * Below this width, the hero/section content column sits flush against the same
+   * gutter as this sidebar (no horizontal separation), so it can collide with hero
+   * text at any viewport height. Above it, the content column re-centers itself
+   * with growing horizontal clearance, and height no longer matters.
+   */
+  @media (max-width: 1340px) {
     display: none;
   }
 `;
