@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { Icon } from '@components/icons';
@@ -50,22 +49,6 @@ const StyledCredit = styled.div`
   a {
     padding: 10px;
   }
-
-  .github-stats {
-    margin-top: 10px;
-
-    & > span {
-      display: inline-flex;
-      align-items: center;
-      margin: 0 7px;
-    }
-    svg {
-      display: inline-block;
-      margin-right: 5px;
-      width: 14px;
-      height: 14px;
-    }
-  }
 `;
 
 const Footer = () => {
@@ -80,28 +63,6 @@ const Footer = () => {
     }
   `);
   const { title: authorName, githubRepo } = site.siteMetadata;
-
-  const [githubInfo, setGitHubInfo] = useState({
-    stars: null,
-    forks: null,
-  });
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
-    const apiUrl = githubRepo.replace('https://github.com/', 'https://api.github.com/repos/');
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(json => {
-        const { stargazers_count, forks_count } = json;
-        setGitHubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
-        });
-      })
-      .catch(e => console.error(e));
-  }, []);
 
   return (
     <StyledFooter>
@@ -121,27 +82,10 @@ const Footer = () => {
       <StyledCredit tabindex="-1">
         <a href={githubRepo}>
           <div>Designed &amp; Built by {authorName}</div>
-
-          {githubInfo.stars !== null && githubInfo.forks !== null && (
-            <div className="github-stats">
-              <span>
-                <Icon name="Star" />
-                <span>{githubInfo.stars.toLocaleString()}</span>
-              </span>
-              <span>
-                <Icon name="Fork" />
-                <span>{githubInfo.forks.toLocaleString()}</span>
-              </span>
-            </div>
-          )}
         </a>
       </StyledCredit>
     </StyledFooter>
   );
-};
-
-Footer.propTypes = {
-  githubInfo: PropTypes.object,
 };
 
 export default Footer;
