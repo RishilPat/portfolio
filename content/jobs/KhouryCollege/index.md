@@ -3,7 +3,7 @@ date: '2025-09-01'
 title: 'Teaching Assistant'
 company: 'Khoury College of Computer Sciences, Northeastern University'
 location: 'Boston, MA'
-range: 'September 2025 – Present'
+range: 'September – December 2025'
 url: 'https://www.khoury.northeastern.edu/'
 ---
 

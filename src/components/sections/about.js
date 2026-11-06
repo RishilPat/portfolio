@@ -109,7 +109,9 @@ const SkillTag = styled.span`
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  padding: 0.52rem 1rem;
+  /* Whole-pixel height (not padding-derived) so the 1px border lands on device pixels. */
+  height: 36px;
+  padding: 0 1rem;
   font-family: var(--font-mono);
   font-size: clamp(var(--fz-xs), 1.15vw, var(--fz-sm));
   font-weight: 500;
@@ -123,7 +125,6 @@ const SkillTag = styled.span`
     color-mix(in srgb, var(--accent) 22%, var(--bg-base)) 0%,
     color-mix(in srgb, var(--accent-tint), var(--bg-base)) 100%
   );
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 28%, transparent);
   white-space: nowrap;
   box-sizing: border-box;
 `;
@@ -333,6 +334,8 @@ const COURSEWORK_BY_CATEGORY = [
   {
     title: 'Computer Science',
     courses: [
+      { code: 'CS4530', name: 'Fundamentals of Software Engineering' },
+      { code: 'CS3000', name: 'Algorithms and Data' },
       { code: 'CS3100', name: 'Object-Oriented Design' },
       { code: 'CS3650', name: 'Computer Systems' },
       { code: 'CS4100', name: 'Foundations of Artificial Intelligence' },
@@ -345,6 +348,7 @@ const COURSEWORK_BY_CATEGORY = [
   {
     title: 'Electrical / Computer Engineering',
     courses: [
+      { code: 'EECE4791 / 4792', name: 'Electrical and Computer Engineering Capstone 1 & 2' },
       { code: 'EECE2520', name: 'Linear Systems' },
       { code: 'EECE2150', name: 'Circuits & Signals' },
       { code: 'EECE2160', name: 'Embedded Design' },
@@ -355,6 +359,7 @@ const COURSEWORK_BY_CATEGORY = [
   {
     title: 'General Engineering',
     courses: [
+      { code: 'MATH3081', name: 'Probability and Statistics' },
       { code: 'CHEM1151', name: 'Chemistry for Engineering - with Recitation' },
       { code: 'MATH1342', name: 'Calculus 2 for Engineering' },
       { code: 'MATH2341', name: 'Differential Equations / Linear Algebra' },
@@ -369,7 +374,7 @@ const SKILL_CATEGORIES = [
   {
     id: 'languages',
     title: 'Languages',
-    items: ['Python', 'C & C++', 'Java', 'MATLAB', 'Bash & PowerShell'],
+    items: ['Python', 'C & C++', 'Java', 'MATLAB', 'Bash & PowerShell', 'TypeScript'],
   },
   {
     id: 'ai-tools',
@@ -394,7 +399,7 @@ const SKILL_CATEGORIES = [
   {
     id: 'miscellaneous',
     title: 'Miscellaneous',
-    items: ['Git & GitHub', 'SVN', 'Linux', 'Windows'],
+    items: ['Git & GitHub', 'SVN', 'Linux', 'Windows', 'Agile'],
   },
 ];
 

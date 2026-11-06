@@ -17,7 +17,7 @@ module.exports = {
     tagline: 'Computer Engineering & Computer Science student.',
     /** Opening hero paragraph (before the most-recent-role sentence from jobs markdown). */
     heroBio:
-      'I am a junior at Northeastern exploring the intersection of software and hardware. Most recently, ', // this will be followed by job
+      'I am a senior at Northeastern exploring the intersection of software and hardware. Most recently, ', // this will be followed by job
     /** Follows job title, company link, and location in the hero. */
     heroRoleClosing: 'building and testing software for electronic test and measurement products.',
     /**

@@ -66,6 +66,38 @@ const StyledProject = styled.li`
     a {
       ${({ theme }) => theme.mixins.inlineLink};
     }
+
+    /*
+     * Cards with a logo image (e.g. CLAMP, a plain <img> from static/): logo above the text
+     * on phones, in a right-hand column on wider screens. Cards without an image are untouched.
+     */
+    > img {
+      display: block;
+      width: 200px;
+      max-width: 100%;
+      height: auto;
+      margin: 0 0 16px;
+    }
+
+    @media (min-width: 700px) {
+      &:has(> img) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 250px;
+        gap: 28px;
+        align-items: center;
+
+        > p {
+          order: 1;
+          margin: 0;
+        }
+
+        > img {
+          order: 2;
+          width: 250px;
+          margin: 0;
+        }
+      }
+    }
   }
 
   .project-tech-list {
